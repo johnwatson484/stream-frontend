@@ -1,0 +1,6 @@
+services:
+  hapi-template-ts:
+    extends:
+      file: docker-compose.override.yaml
+      service: hapi-template-ts
+    command: npm run start:debug

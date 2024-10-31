@@ -1,0 +1,9 @@
+services:
+  hapi-template-ts:
+    extends:
+      file: docker-compose.test.yaml
+      service: hapi-template-ts
+    command: npm run test:watch
+    volumes:
+      - ./.git:/home/node/.git
+      - ./src:/home/node/src

@@ -1,5 +1,5 @@
 services:
-  hapi-template-ts:
+  stream-frontend:
     build: .
-    image: hapi-template-ts
-    container_name: hapi-template-ts
+    image: stream-frontend
+    container_name: stream-frontend

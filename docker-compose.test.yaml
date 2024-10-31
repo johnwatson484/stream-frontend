@@ -1,12 +1,12 @@
 services:
-  hapi-template-ts:
+  stream-frontend:
     extends:
       file: docker-compose.yaml
-      service: hapi-template-ts
+      service: stream-frontend
     build:
       target: development
-    image: hapi-template-ts-test
-    container_name: hapi-template-ts-test
+    image: stream-frontend-test
+    container_name: stream-frontend-test
     command: npm run test
     volumes:
       - ./test:/home/node/test

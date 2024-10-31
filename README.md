@@ -1,5 +1,4 @@
-# Stream Frontend (TypeScript)
-Quick start new Node.js project using Hapi.js and TypeScript.
+# Stream Frontend
 
 ## Prerequisites
 

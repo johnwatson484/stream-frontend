@@ -4,4 +4,4 @@ services:
     image: stream-frontend
     container_name: stream-frontend
     environment:
-      BACKEND_HOST: stream-backend
+      BACKEND_HOST: http://stream-backend:3001

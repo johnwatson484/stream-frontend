@@ -34,6 +34,12 @@ const config = convict({
     default: 'Stream Frontend',
     env: 'APP_NAME',
   },
+  backendHost: {
+    doc: 'The host of the backend service.',
+    format: String,
+    default: '',
+    env: 'BACKEND_HOST'
+  },
 })
 
 config.validate({ allowed: 'strict' })

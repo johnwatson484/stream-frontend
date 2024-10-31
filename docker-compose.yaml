@@ -3,3 +3,5 @@ services:
     build: .
     image: stream-frontend
     container_name: stream-frontend
+    environment:
+      BACKEND_HOST: stream-backend

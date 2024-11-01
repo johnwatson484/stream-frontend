@@ -16,6 +16,18 @@ const routes: ServerRoute[] = [{
   },
 }, {
   method: 'GET',
+  path: '/download/postgres/stream',
+  handler: async (_request: Request, h: ResponseToolkit): Promise<ResponseObject> => {
+    const response: any = await Wreck.get(`${config.get('backendHost')}/stream/postgres/stream`, {
+      json: true
+    })
+    const csv = response.payload.data.map((row: any) => {
+      return Object.values(row).join(',')
+    }).join('\n')
+    return h.response(csv).type('text/csv')
+  },
+}, {
+  method: 'GET',
   path: '/download/csv',
   handler: (_request: Request, h: ResponseToolkit): ResponseObject => {
     return h.response('ok')

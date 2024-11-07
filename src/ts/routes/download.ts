@@ -24,18 +24,25 @@ const routes: ServerRoute[] = [{
     const response: Readable = await Wreck.request('get', `${config.get('backendHost')}/postgres/stream`)
 
     const stream: Readable = new Readable({
-      async read (_size) {
-        const chunk = await response.read()
-        if (chunk) {
-          const jsonChunk = JSON.parse(chunk.toString())
-          const rows = jsonChunk.data.map((row: any) => {
-            return Object.values(row).join(',')
-          }).join('\n')
-          this.push(rows)
-        } else {
-          this.push(null)
-        }
-      }
+      read () {}
+    })
+
+    response.on('data', (chunk) => {
+      const jsonChunk = JSON.parse(chunk.toString())
+      const rows = jsonChunk.data.map((row: any) => {
+        return Object.values(row).join(',')
+      }).join('\n')
+      stream.push(rows)
+    })
+
+    response.on('end', () => {
+      console.log('Stream ended')
+      stream.push(null)
+    })
+
+    response.on('error', (err) => {
+      console.error(err)
+      stream.push(null)
     })
 
     return h.response(stream)
